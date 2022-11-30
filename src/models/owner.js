@@ -71,7 +71,7 @@ ownerSchema.methods.toJSON = function () {
 
 ownerSchema.methods.generateAuthToken = async function () {
   const owner = this;
-  const token = jwt.sign({ _id: owner.id.toString() }, "nodeproject");
+  const token = jwt.sign({ _id: owner.id.toString() }, process.env.JWT_SECRET);
 
   owner.tokens = owner.tokens.concat({ token });
   await owner.save();
